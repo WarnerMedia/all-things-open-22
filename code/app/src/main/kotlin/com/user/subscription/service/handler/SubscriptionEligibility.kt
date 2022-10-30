@@ -94,8 +94,6 @@ class SubscriptionEligibility {
                 )
             )
 
-            engine.saveToFile("engine.json")
-
             logger.info { "user_data - $userRequestBody" }
             val plans = engine.evaluate(userRequestBody.toHashMap()).getPlansList()
 
