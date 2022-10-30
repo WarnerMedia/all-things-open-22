@@ -61,11 +61,24 @@ layout: two-cols
 
 # What is a Rules Engine?
 
-> A rules engine is all about providing an alternative computational model.
+<br />
+<br />
+<br />
 
+> A rules engine is all about providing an alternative computational model
+> <br />  
 > ...simplistically you can think of it as a bunch of if-then statements.
 
-[Should I use a Rules Engine?](https://martinfowler.com/bliki/RulesEngine.html) by Martin Fowler
+<br />
+<br />
+
+<div style="text-align: right">
+    <br />
+    <a href="https://martinfowler.com/bliki/RulesEngine.html" rel="noopener noreferrer" target="_blank">Should I use a Rules Engine?</a>
+    <br />
+    <br />
+    <i>Martin Fowler</i>
+</div>
 
 <img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
 
@@ -275,9 +288,9 @@ Visualizing the JSON representation:
 <img src="/images/rules-engine-flat.png" width="650"/>
 
 <div style="text-align: right">
-<br />
-Tool used:
-<a href="https://jsongrid.com/json-grid" rel="noopener noreferrer" target="_blank">jsongrid</a>
+    <br />
+    Tool used:
+    <a href="https://jsongrid.com/json-grid" rel="noopener noreferrer" target="_blank">jsongrid</a>
 </div>
 
 <img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
