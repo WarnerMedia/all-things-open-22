@@ -33,7 +33,7 @@ layout: two-cols
 
 #
 
-<img src="/images/me.jpeg" width="400" height="400" style="padding: 5rem 0 0 5rem;" />
+<img src="/images/me.jpeg" width="400" height="400" style="padding: 5rem 0 0 5rem;"/>
 
 <img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
 
@@ -142,10 +142,24 @@ eligible_promotion_codes.contains(user_input_promotion_code)
 <img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
 
 ---
+layout: two-cols
+---
 
 # Code walkthrough
 
-TODO: Link to the code walkthrough repo
+GitHub (Code + Slides)
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+[bit.ly/wbd-ato22](https://bit.ly/wbd-ato22)
+
+::right::
+
+<img src="/images/bitly.png" width="400" style="padding: 5rem 0 0 5rem;"/>
 
 <img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
 
@@ -330,7 +344,7 @@ suspend fun evaluateFacts(facts: HashMap<String, Any?>): EvaluationResult {
 
 <img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
 
----
+<!-- ---
 
 # More advanced examples
 
@@ -338,7 +352,7 @@ Creating server-driven workflows
 
 TODO: elaborate
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/> -->
 
 ---
 
@@ -347,17 +361,19 @@ TODO: elaborate
 FAQs
 
 - When would a rules engine not be applicable?
-    - Not as a starting point (_mostly_)
-    - Start with something simple (if-then-else)
-    - Be cognizant of the added complexity with each change
+
+  - Not as a starting point (_mostly_)
+  - Start with something simple (if-then-else)
+  - Be cognizant of the added complexity with each change
 
 - Is this specific to Kotlin/TypeScript?
-    - Nope
-    - _Computational model_ that can be replicated in any language
+
+  - Nope
+  - _Computational model_ that can be replicated in any language
 
 - What about all the other (open-source) implementations of rules engine?
-    - All are correct!
-    - Explore them and make choices based on use case
+  - All are correct!
+  - Explore them and make choices based on the use case
 
 <img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
 
