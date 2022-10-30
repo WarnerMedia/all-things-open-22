@@ -1,0 +1,21 @@
+{
+  "name": "slides",
+  "version": "1.0.0",
+  "description": "slides for conference",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "$(npm bin)/slidev",
+    "build": "$(npm bin)/slidev build",
+    "export": "$(npm bin)/slidev export --with-clicks"
+  },
+  "author": "Satvik Shukla",
+  "license": "ISC",
+  "dependencies": {
+    "@slidev/cli": "^0.36.8",
+    "@slidev/theme-default": "^0.21.2"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.27.1"
+  }
+}
