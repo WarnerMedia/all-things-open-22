@@ -47,7 +47,7 @@ Build the app/service
 $ ./gradlew build
 ```
 
-Build the app/service
+Run the app/service
 
 ```bash
 $ ./gradlew run
