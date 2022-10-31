@@ -3,7 +3,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.7.20"
     application
     id("com.github.johnrengelman.shadow") version "7.0.0"
 }
