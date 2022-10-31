@@ -215,6 +215,12 @@ flowchart TD
     R2 --> C3[user_is_logged_in]
     R4 --> C4[user_has_no_existing_plan]
     R4 --> C5[year_is_2022]
+    style C1 fill:#CBE6AE
+    style C2 fill:#CBE6AE
+    style C3 fill:#CBE6AE
+    style R4 fill:#FFB3A3
+    style C4 fill:#FFB3A3
+    style C5 fill:#FFB3A3
 ```
 
 <img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
