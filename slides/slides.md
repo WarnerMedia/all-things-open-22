@@ -57,7 +57,7 @@ layout: two-cols
 
 <img src="/images/me.jpeg" width="400" height="400" style="padding: 5rem 0 0 5rem;"/>
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -77,7 +77,7 @@ layout: two-cols
 
 - Q&A (~5 mins)
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -102,7 +102,7 @@ layout: two-cols
     <i>Martin Fowler</i>
 </div>
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -134,7 +134,7 @@ fun getUserPlanType(
 }
 ```
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -174,7 +174,7 @@ eligible_promotion_codes.contains(user_input_promotion_code)
 
 </v-click>
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 layout: two-cols
@@ -196,7 +196,7 @@ GitHub (Code + Slides)
 
 <img src="/images/bitly.png" width="400" style="padding: 5rem 0 0 5rem;"/>
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -221,7 +221,7 @@ flowchart TD
 
 </v-click>
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -249,7 +249,7 @@ flowchart TD
     style C5 fill:#FFB3A3
 ```
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -283,7 +283,7 @@ val engine = Engine(
 
 </v-click>
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -311,7 +311,7 @@ The engine instance as JSON:
 }
 ```
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -329,7 +329,7 @@ Visualizing the JSON representation:
     <a href="https://jsongrid.com/json-grid" rel="noopener noreferrer" target="_blank">jsongrid</a>
 </div>
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -339,7 +339,7 @@ Leveraging remote rules engine instances
 
 <img src="/images/rules-engine-s3-bucket.png" width="650"/>
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -371,7 +371,7 @@ class CachedEngineInstance(val bucketName: String, val keyName: String, val time
 }
 ```
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -391,7 +391,7 @@ suspend fun evaluateFacts(facts: HashMap<String, Any?>): EvaluationResult {
 }
 ```
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -405,7 +405,7 @@ Some other (possible) use cases
 - Request proxies
 - _And a lot more_
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 
@@ -428,7 +428,7 @@ FAQs
   - All are correct!
   - Explore them and make choices based on the use case
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
 ---
 layout: center
@@ -450,4 +450,4 @@ For any project related questions:
 - Use GitHub [Issues](https://github.com/WarnerMedia/Rules-Engine/pulls)
 and [Discussions](https://github.com/WarnerMedia/Rules-Engine/discussions)
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
+<img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
