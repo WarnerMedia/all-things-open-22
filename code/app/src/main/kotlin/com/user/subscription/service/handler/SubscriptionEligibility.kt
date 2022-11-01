@@ -37,12 +37,13 @@ class SubscriptionEligibility {
             }
 
             if (
-                userRequestBody.subscribedForMonths > 12 &&
-                Instant.now().epochSecond > UserEligibilityConstants.PREMIUM_PLAN_ROLLOUT_TIME) {
+                userRequestBody.subscribedForMonths > UserEligibilityConstants.PREMIUM_PLAN_MINIMUM_MONTHS &&
+                Instant.now().epochSecond > UserEligibilityConstants.PREMIUM_PLAN_ROLLOUT_TIME
+            ) {
                 plans.add(SubscriptionPlan.PREMIUM_MONTHLY)
             }
 
-            if (hashSetOf("promo.code.1").contains(userRequestBody.promotionCode)) {
+            if (UserEligibilityConstants.ELIGIBLE_PROMO_CODES.contains(userRequestBody.promotionCode)) {
                 plans.add(SubscriptionPlan.DISCOUNTED_MONTHLY)
                 plans.remove(SubscriptionPlan.STANDARD_MONTHLY)
             }
@@ -64,9 +65,13 @@ class SubscriptionEligibility {
             logger.info { "user_data - $userRequestBody" }
 
             val engine = UserEligibilityEngine.getEngine()
-            val evaluationResult = engine.evaluate(userRequestBody.toHashMap())
-            val plans = evaluationResult.getPlansList()
+            val facts = userRequestBody.toHashMap()
+            facts["currentTime"] = Instant.now().epochSecond
 
+            val evaluationResult = engine.evaluate(facts)
+            logger.info { "evaluationResult - $evaluationResult" }
+
+            val plans = evaluationResult.getPlansList()
             logger.info { "plans - $plans" }
             req.response().endWithJson(plans)
         }

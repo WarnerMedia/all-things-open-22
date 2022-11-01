@@ -5,8 +5,6 @@ import kotlin.reflect.full.memberProperties
 
 data class UserSubscriptionRequest(
     @JsonProperty("email") val email: String,
-    @JsonProperty("state") val state: String,
-    @JsonProperty("country") val country: String,
     @JsonProperty("subscribed_for_months") val subscribedForMonths: Int,
     @JsonProperty("logged_in") val loggedIn: Boolean,
     @JsonProperty("promotion_code") val promotionCode: String?

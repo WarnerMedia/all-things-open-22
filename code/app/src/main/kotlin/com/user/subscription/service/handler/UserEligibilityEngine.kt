@@ -7,13 +7,12 @@ import com.warnermedia.rulesengine.*
 object UserEligibilityEngine {
     fun getEngine(): Engine {
         return Engine(
-            "user-eligibility-engine",
-            arrayListOf(
+            "user-eligibility-engine", arrayListOf(
                 Rule(
                     SubscriptionPlan.STANDARD_MONTHLY.name,
                     arrayListOf(
                         Condition("loggedIn", Operator(OperatorType.EQUALS, true)),
-                        Condition("discounted-monthly", Operator(OperatorType.EQUALS, false))
+                        Condition("DISCOUNTED_MONTHLY", Operator(OperatorType.EQUALS, false))
                     ),
                 ), Rule(
                     SubscriptionPlan.STANDARD_ANNUAL.name,
@@ -28,20 +27,26 @@ object UserEligibilityEngine {
                 ), Rule(
                     SubscriptionPlan.PREMIUM_MONTHLY.name,
                     arrayListOf(
-                        Condition("subscribedForMonths", Operator(OperatorType.GREATER_THAN, 12)),
                         Condition(
+                            "subscribedForMonths",
+                            Operator(OperatorType.GREATER_THAN, UserEligibilityConstants.PREMIUM_PLAN_MINIMUM_MONTHS)
+                        ), Condition(
                             "currentTime",
                             Operator(OperatorType.GREATER_THAN, UserEligibilityConstants.PREMIUM_PLAN_ROLLOUT_TIME)
                         )
                     ),
                 ), Rule(
-                    SubscriptionPlan.DISCOUNTED_MONTHLY.name,
-                    arrayListOf(
-                        Condition("promotionCode", Operator(OperatorType.CONTAINED_IN, hashSetOf("promo.code.1")))
-                    ),
+                    SubscriptionPlan.DISCOUNTED_MONTHLY.name, arrayListOf(
+                        Condition(
+                            "promotionCode",
+                            Operator(OperatorType.CONTAINED_IN, UserEligibilityConstants.ELIGIBLE_PROMO_CODES)
+                        )
+                    ), options = RuleOptions(priority = 1)
                 )
             ), EngineOptions(
-                sortRulesByPriority = true, storeRuleEvaluationResults = true
+                sortRulesByPriority = true,
+                storeRuleEvaluationResults = true,
+                undefinedFactEvaluationType = UndefinedFactEvaluation.EVALUATE_TO_FALSE
             )
         )
     }
