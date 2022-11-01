@@ -24,7 +24,6 @@ layout: two-cols
 ---
 layout: cover
 background: "/images/fotografiska.jpeg"
-download: true
 ---
 
 # The Power of a Rules Engine
@@ -264,7 +263,7 @@ An engine instance in code:
 
 ```kotlin{3-12|all}
 val engine = Engine(
-    "eligibility-engine",
+    "user-eligibility-engine",
     arrayListOf(
         Rule(
             SubscriptionPlan.STANDARD_MONTHLY.name,
@@ -296,7 +295,7 @@ The engine instance as JSON:
 
 ```json{3-13|all}
 {
-  "id": "eligibility-engine",
+  "id": "user-eligibility-engine",
   "rules": [
     {
       "id": "STANDARD_MONTHLY",
@@ -383,9 +382,9 @@ Leveraging remote rules engine instances
 ```kotlin{7-8|all}
 suspend fun evaluateFacts(facts: HashMap<String, Any?>): EvaluationResult {
     val cachedEngineInstance = CachedEngineInstance(
-        "rules-engine-bucket",
-        "engine.json",
-        60 * 60
+        "rules-engine-bucket", // name of the S3 bucket
+        "engine.json", // name of the file in S3 bucket
+        60 * 60 // refresh and get latest persisted engine every hour
     )
     val engine = cachedEngineInstance.getEngineInstance()
     return engine.evaluate(facts)
