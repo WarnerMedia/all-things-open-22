@@ -1,49 +1,22 @@
 package com.user.subscription.service.handler
 
-import com.user.subscription.service.model.SubscriptionPlan
 import com.warnermedia.rulesengine.*
 
+//    Rules to add:
+//    - standard_monthly - eligible when logged in
+//    - standard_annual - eligible when logged in
+//    - student_monthly - eligible when email ends with .edu
+//    - premium_monthly - eligible when user on platform for more than
+//      x months, and it is past launch time
+//    - discounted_monthly - eligible when promo code is eligible
+//    - standard_monthly - not eligible if discounted_monthly is eligible
 
 object UserEligibilityEngine {
     fun getEngine(): Engine {
         return Engine(
-            "user-eligibility-engine", arrayListOf(
-                Rule(
-                    SubscriptionPlan.STANDARD_MONTHLY.name,
-                    arrayListOf(
-                        Condition("loggedIn", Operator(OperatorType.EQUALS, true)),
-                        Condition("DISCOUNTED_MONTHLY", Operator(OperatorType.EQUALS, false))
-                    ),
-                ), Rule(
-                    SubscriptionPlan.STANDARD_ANNUAL.name,
-                    arrayListOf(
-                        Condition("loggedIn", Operator(OperatorType.EQUALS, true))
-                    ),
-                ), Rule(
-                    SubscriptionPlan.STUDENT_MONTHLY.name,
-                    arrayListOf(
-                        Condition("email", Operator(OperatorType.ENDS_WITH, ".edu"))
-                    ),
-                ), Rule(
-                    SubscriptionPlan.PREMIUM_MONTHLY.name,
-                    arrayListOf(
-                        Condition(
-                            "subscribedForMonths",
-                            Operator(OperatorType.GREATER_THAN, UserEligibilityConstants.PREMIUM_PLAN_MINIMUM_MONTHS)
-                        ), Condition(
-                            "currentTime",
-                            Operator(OperatorType.GREATER_THAN, UserEligibilityConstants.PREMIUM_PLAN_ROLLOUT_TIME)
-                        )
-                    ),
-                ), Rule(
-                    SubscriptionPlan.DISCOUNTED_MONTHLY.name, arrayListOf(
-                        Condition(
-                            "promotionCode",
-                            Operator(OperatorType.CONTAINED_IN, UserEligibilityConstants.ELIGIBLE_PROMO_CODES)
-                        )
-                    ), options = RuleOptions(priority = 1)
-                )
-            ), EngineOptions(
+            "user-eligibility-engine",
+            arrayListOf(),
+            EngineOptions(
                 sortRulesByPriority = true,
                 storeRuleEvaluationResults = true,
                 undefinedFactEvaluationType = UndefinedFactEvaluation.EVALUATE_TO_FALSE
