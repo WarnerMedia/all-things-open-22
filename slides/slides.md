@@ -1,4 +1,27 @@
 ---
+layout: two-cols
+---
+
+#
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+[bit.ly/wbd-ato22](https://bit.ly/wbd-ato22)
+
+::right::
+
+<img src="/images/bitly.png" width="500" style="padding: 5rem 2rem 0 5rem;"/>
+
+---
 layout: cover
 background: "/images/fotografiska.jpeg"
 download: true
@@ -22,9 +45,9 @@ layout: two-cols
 - Working on anything/everything commerce
 - Creator and maintainer of
   - [WireMock-Captain](https://github.com/HBOCodeLabs/wiremock-captain)
-  - [@warnermedia/Rules-Engine](https://github.com/WarnerMedia/Rules-Engine)
+  - [@WarnerMedia/Rules-Engine](https://github.com/WarnerMedia/Rules-Engine)
 - Likes
-  - reading
+  - watches
   - cooking
   - discovering international music and series
 - GitHub: [satvik-s](https://github.com/satvik-s)
@@ -86,11 +109,11 @@ layout: two-cols
 
 # Use cases
 
-```kotlin{1|2-5|22|7-9|10|14|15-18|19-21|10-15|all}
+```kotlin{1|2|22|7-9|3|10|14|4|15-18|5|19-21|10-15|all}
 fun getUserPlanType(
     isLoggedIn: Boolean,
     isStudent: Boolean,
-    isEligibleForPromotion: Boolean,
+    isEligibleForPremiumTier: Boolean,
     isEligibleForNewYearsPromotion: Boolean
 ): Array<String> {
     if (isLoggedIn) {
@@ -102,8 +125,8 @@ fun getUserPlanType(
         }
         return arrayOf("monthly_plan", "annual_plan", "student_plan")
     }
-    if (isLoggedIn && isEligibleForPromotion) {
-        return arrayOf("monthly_plan", "annual_plan", "promotional_plan")
+    if (isLoggedIn && isEligibleForPremiumTier) {
+        return arrayOf("monthly_plan", "annual_plan", "premium_plan")
     }
     if (isLoggedIn && isEligibleForNewYearsPromotion) {
         return arrayOf("monthly_plan", "annual_plan", "new_years_promotional_plan")
@@ -142,7 +165,7 @@ user_logged_in == true && user_is_student == true
 
 <v-click>
 
-Engine - A collection of rules leading to an overall result. e.g.
+Engine - A collection of rules leading to an overall evaluation result. e.g.
 
 ```kotlin
 user_logged_in == true && user_is_student == true
@@ -182,6 +205,8 @@ GitHub (Code + Slides)
 
 Fixed hierarchy
 
+<v-click>
+
 What it supports:
 
 ```mermaid
@@ -194,6 +219,8 @@ flowchart TD
     R2 --> C4[user_has_no_existing_plan]
     R2 --> C5[year_is_2022]
 ```
+
+</v-click>
 
 <img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
 
@@ -231,9 +258,11 @@ flowchart TD
 
 JSON persistence
 
+<v-click>
+
 An engine instance in code:
 
-```kotlin
+```kotlin{3-12|all}
 val engine = Engine(
     "eligibility-engine",
     arrayListOf(
@@ -253,6 +282,8 @@ val engine = Engine(
 )
 ```
 
+</v-click>
+
 <img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
 
 ---
@@ -263,7 +294,7 @@ JSON persistence
 
 The engine instance as JSON:
 
-```json
+```json{3-13|all}
 {
   "id": "eligibility-engine",
   "rules": [
@@ -317,7 +348,7 @@ Leveraging remote rules engine instances
 
 Leveraging remote rules engine instances
 
-```kotlin{17-20|all}
+```kotlin{17-20|8-15|all}
 class CachedEngineInstance(val bucketName: String, val keyName: String, val timeToLive: Int) {
     private val objectMapper = ObjectMapper()
     private val request = GetObjectRequest { key = keyName; bucket = bucketName }
@@ -349,7 +380,7 @@ class CachedEngineInstance(val bucketName: String, val keyName: String, val time
 
 Leveraging remote rules engine instances
 
-```kotlin
+```kotlin{7-8|all}
 suspend fun evaluateFacts(facts: HashMap<String, Any?>): EvaluationResult {
     val cachedEngineInstance = CachedEngineInstance(
         "rules-engine-bucket",
@@ -383,7 +414,7 @@ FAQs
 
   - Not as a starting point (_mostly_)
   - Start with something simple (if-then-else)
-  - Be cognizant of the added complexity with each change
+  - Be mindful of the added complexity with each change
 
 - Is this specific to Kotlin/TypeScript?
 
