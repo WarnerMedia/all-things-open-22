@@ -393,15 +393,19 @@ suspend fun evaluateFacts(facts: HashMap<String, Any?>): EvaluationResult {
 
 <img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
 
-<!-- ---
+---
 
 # More advanced examples
 
-Creating server-driven workflows
+Some other (possible) use cases
 
-TODO: elaborate
+- Server driven workflows/UI
+- CI/CD pipelines
+- Feature flags
+- Request proxies
+- _And a lot more_
 
-<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/> -->
+<img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
 
 ---
 
@@ -430,6 +434,20 @@ FAQs
 layout: center
 ---
 
-Thank you!
+__Thank you!__
+
+<br />
+<br />
+
+For any feedback about the session, please use the event app.
+
+<br />
+<br />
+<br />
+
+For any project related questions:
+- Approach me!
+- Use GitHub [Issues](https://github.com/WarnerMedia/Rules-Engine/pulls)
+and [Discussions](https://github.com/WarnerMedia/Rules-Engine/discussions)
 
 <img src="/images/wbd.png" width="100" style="position: absolute; right: 0px; bottom: 0px;"/>
