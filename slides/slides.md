@@ -87,9 +87,11 @@ layout: two-cols
 <br />
 <br />
 
-> A rules engine is all about providing an alternative computational model
-> <br />  
-> ...simplistically you can think of it as a bunch of if-then statements.
+> _A rules engine is all about providing an alternative computational model._
+> <br />
+> ...
+> <br />
+> _simplistically you can think of it as a bunch of if-then statements._
 
 <br />
 <br />
@@ -109,7 +111,7 @@ layout: two-cols
 # Use cases
 
 ```kotlin{1|2|22|7-9|3|10|14|4|15-18|5|19-21|10-15|all}
-fun getUserPlanType(
+fun getUserEligiblePlanTypes( // Hypothetical!
     isLoggedIn: Boolean,
     isStudent: Boolean,
     isEligibleForPremiumPlan: Boolean,
@@ -269,7 +271,7 @@ val engine = Engine(
             SubscriptionPlan.STANDARD_MONTHLY.name,
             arrayListOf(
                 Condition("loggedIn", Operator(OperatorType.EQUALS, true)),
-                Condition("discounted-monthly", Operator(OperatorType.EQUALS, false))
+                Condition("DISCOUNTED_MONTHLY", Operator(OperatorType.EQUALS, false))
             ),
         ),
         ...,
@@ -301,7 +303,7 @@ The engine instance as JSON:
       "id": "STANDARD_MONTHLY",
       "conditions": [
         { "fact": "loggedIn", "operator": { "operatorType": "EQUALS", "operatorValue": true } },
-        { "fact": "discounted-monthly", "operator": { "operatorType": "EQUALS", "operatorValue": false } }
+        { "fact": "DISCOUNTED_MONTHLY", "operator": { "operatorType": "EQUALS", "operatorValue": false } }
       ],
       "result": { "first": true, "second": false },
       "options": { "conditionJoiner": "AND", "enabled": true, ... }
@@ -347,7 +349,7 @@ Leveraging remote rules engine instances
 
 Leveraging remote rules engine instances
 
-```kotlin{17-20|8-15|all}
+```kotlin{18-21|8-16|all}
 class CachedEngineInstance(val bucketName: String, val keyName: String, val timeToLive: Int) {
     private val objectMapper = ObjectMapper()
     private val request = GetObjectRequest { key = keyName; bucket = bucketName }
@@ -356,9 +358,9 @@ class CachedEngineInstance(val bucketName: String, val keyName: String, val time
     private var latestRetrievalTime: Long = 0
 
     suspend fun getEngineInstance(): Engine {
-        if (engineInstance == null || Instant.now().epochSecond > (latestRetrievalTime + timeToLive)) {
+        // At startup, and every time cache expires, get the updated rules engine instance
+        if (engineIsUndefined || engineCacheHasExpired) {
             engineInstance = getRemoteEngineInstance()
-            latestRetrievalTime = Instant.now().epochSecond
         }
 
         return engineInstance as Engine
@@ -402,8 +404,8 @@ Some other (possible) use cases
 - Server driven workflows/UI
 - CI/CD pipelines
 - Feature flags
-- Request proxies
-- _And a lot more_
+- Reverse proxy (Gateway)
+- _And a lot more..._
 
 <img src="/images/wbd.png" width="80" style="position: absolute; right: 0.2rem; bottom: 0.2rem;"/>
 
@@ -421,7 +423,7 @@ FAQs
 
 - Is this specific to Kotlin/TypeScript?
 
-  - Nope
+  - Not at all!
   - _Computational model_ that can be replicated in any language
 
 - What about all the other (open-source) implementations of rules engine?
