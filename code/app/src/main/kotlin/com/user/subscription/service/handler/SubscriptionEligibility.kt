@@ -28,25 +28,25 @@ class SubscriptionEligibility {
             logger.info { "user_data - $userRequestBody" }
             val plans = arrayListOf<SubscriptionPlan>()
 
-            if (userRequestBody.loggedIn) {
-                plans.addAll(arrayListOf(SubscriptionPlan.STANDARD_MONTHLY, SubscriptionPlan.STANDARD_ANNUAL))
-            }
+//            if (userRequestBody.loggedIn) {
+//                plans.addAll(arrayListOf(SubscriptionPlan.STANDARD_MONTHLY, SubscriptionPlan.STANDARD_ANNUAL))
+//            }
 
-            if (userRequestBody.email.endsWith(".edu")) {
-                plans.add(SubscriptionPlan.STUDENT_MONTHLY)
-            }
+//            if (userRequestBody.email.endsWith(".edu")) {
+//                plans.add(SubscriptionPlan.STUDENT_MONTHLY)
+//            }
 
-            if (
-                userRequestBody.subscribedForMonths > UserEligibilityConstants.PREMIUM_PLAN_MINIMUM_MONTHS &&
-                Instant.now().epochSecond > UserEligibilityConstants.PREMIUM_PLAN_ROLLOUT_TIME
-            ) {
-                plans.add(SubscriptionPlan.PREMIUM_MONTHLY)
-            }
+//            if (
+//                userRequestBody.subscribedForMonths > UserEligibilityConstants.PREMIUM_PLAN_MINIMUM_MONTHS &&
+//                Instant.now().epochSecond > UserEligibilityConstants.PREMIUM_PLAN_ROLLOUT_TIME
+//            ) {
+//                plans.add(SubscriptionPlan.PREMIUM_MONTHLY)
+//            }
 
-            if (UserEligibilityConstants.ELIGIBLE_PROMO_CODES.contains(userRequestBody.promotionCode)) {
-                plans.add(SubscriptionPlan.DISCOUNTED_MONTHLY)
-                plans.remove(SubscriptionPlan.STANDARD_MONTHLY)
-            }
+//            if (UserEligibilityConstants.ELIGIBLE_PROMO_CODES.contains(userRequestBody.promotionCode)) {
+//                plans.add(SubscriptionPlan.DISCOUNTED_MONTHLY)
+//                plans.remove(SubscriptionPlan.STANDARD_MONTHLY)
+//            }
 
             logger.info { "plans - $plans" }
             req.response().endWithJson(plans)
