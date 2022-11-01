@@ -39,7 +39,7 @@ application {
 dependencies {
     implementation("ch.qos.logback:logback-classic:1.4.4")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.4.2")
-    implementation("com.warnermedia:rulesengine:1.8.0")
+    implementation("com.warnermedia:rulesengine:1.8.1")
     implementation("io.github.microutils:kotlin-logging-jvm:3.0.2")
     implementation("io.vertx:vertx-web:$vertxVersion")
     implementation("io.vertx:vertx-lang-kotlin:$vertxVersion")

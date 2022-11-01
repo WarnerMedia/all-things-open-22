@@ -13,11 +13,10 @@ import java.time.Instant
 
 private val logger = KotlinLogging.logger("SubscriptionEligibility")
 
-private const val PREMIUM_PLAN_ROLLOUT_TIME = 1667610000
-
 class SubscriptionEligibility {
     companion object {
         val v1 = Handler<RoutingContext> { req ->
+            logger.info { "incoming request to v1 API" }
             val userRequestBody = parseBody(req)
 
             if (userRequestBody == null) {
@@ -37,11 +36,14 @@ class SubscriptionEligibility {
                 plans.add(SubscriptionPlan.STUDENT_MONTHLY)
             }
 
-            if (userRequestBody.subscribedForMonths > 12 && Instant.now().epochSecond > PREMIUM_PLAN_ROLLOUT_TIME) {
+            if (
+                userRequestBody.subscribedForMonths > UserEligibilityConstants.PREMIUM_PLAN_MINIMUM_MONTHS &&
+                Instant.now().epochSecond > UserEligibilityConstants.PREMIUM_PLAN_ROLLOUT_TIME
+            ) {
                 plans.add(SubscriptionPlan.PREMIUM_MONTHLY)
             }
 
-            if (hashSetOf("promo.code.1").contains(userRequestBody.promotionCode)) {
+            if (UserEligibilityConstants.ELIGIBLE_PROMO_CODES.contains(userRequestBody.promotionCode)) {
                 plans.add(SubscriptionPlan.DISCOUNTED_MONTHLY)
                 plans.remove(SubscriptionPlan.STANDARD_MONTHLY)
             }
@@ -51,6 +53,7 @@ class SubscriptionEligibility {
         }
 
         val v2 = Handler<RoutingContext> { req ->
+            logger.info { "incoming request to v2 API" }
             val userRequestBody = parseBody(req)
 
             if (userRequestBody == null) {
@@ -59,44 +62,16 @@ class SubscriptionEligibility {
                 return@Handler
             }
 
-            val engine = Engine(
-                "eligibility-engine", arrayListOf(
-                    Rule(
-                        SubscriptionPlan.STANDARD_MONTHLY.name,
-                        arrayListOf(
-                            Condition("loggedIn", Operator(OperatorType.EQUALS, true)),
-                            Condition("discounted-monthly", Operator(OperatorType.EQUALS, false))
-                        ),
-                    ), Rule(
-                        SubscriptionPlan.STANDARD_ANNUAL.name,
-                        arrayListOf(
-                            Condition("loggedIn", Operator(OperatorType.EQUALS, true))
-                        ),
-                    ), Rule(
-                        SubscriptionPlan.STUDENT_MONTHLY.name,
-                        arrayListOf(
-                            Condition("email", Operator(OperatorType.ENDS_WITH, ".edu"))
-                        ),
-                    ), Rule(
-                        SubscriptionPlan.PREMIUM_MONTHLY.name,
-                        arrayListOf(
-                            Condition("subscribedForMonths", Operator(OperatorType.GREATER_THAN, 12)),
-                            Condition("currentTime", Operator(OperatorType.GREATER_THAN, PREMIUM_PLAN_ROLLOUT_TIME))
-                        ),
-                    ), Rule(
-                        SubscriptionPlan.DISCOUNTED_MONTHLY.name,
-                        arrayListOf(
-                            Condition("promotionCode", Operator(OperatorType.CONTAINED_IN, hashSetOf("promo.code.1")))
-                        ),
-                    )
-                ), EngineOptions(
-                    sortRulesByPriority = true, storeRuleEvaluationResults = true
-                )
-            )
-
             logger.info { "user_data - $userRequestBody" }
-            val plans = engine.evaluate(userRequestBody.toHashMap()).getPlansList()
 
+            val engine = UserEligibilityEngine.getEngine()
+            val facts = userRequestBody.toHashMap()
+            facts["currentTime"] = Instant.now().epochSecond
+
+            val evaluationResult = engine.evaluate(facts)
+            logger.info { "evaluationResult - $evaluationResult" }
+
+            val plans = evaluationResult.getPlansList()
             logger.info { "plans - $plans" }
             req.response().endWithJson(plans)
         }
