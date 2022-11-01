@@ -112,7 +112,7 @@ layout: two-cols
 fun getUserPlanType(
     isLoggedIn: Boolean,
     isStudent: Boolean,
-    isEligibleForPremiumTier: Boolean,
+    isEligibleForPremiumPlan: Boolean,
     isEligibleForNewYearsPromotion: Boolean
 ): Array<String> {
     if (isLoggedIn) {
@@ -124,7 +124,7 @@ fun getUserPlanType(
         }
         return arrayOf("monthly_plan", "annual_plan", "student_plan")
     }
-    if (isLoggedIn && isEligibleForPremiumTier) {
+    if (isLoggedIn && isEligibleForPremiumPlan) {
         return arrayOf("monthly_plan", "annual_plan", "premium_plan")
     }
     if (isLoggedIn && isEligibleForNewYearsPromotion) {
