@@ -2,7 +2,7 @@ package com.user.subscription.service.handler
 
 import com.user.subscription.service.model.SubscriptionPlan
 import com.user.subscription.service.model.UserSubscriptionRequest
-import com.warnermedia.rulesengine.*
+import com.warnermedia.rulesengine.core.EvaluationResult
 import io.vertx.core.Handler
 import io.vertx.core.http.HttpServerResponse
 import io.vertx.core.json.DecodeException
