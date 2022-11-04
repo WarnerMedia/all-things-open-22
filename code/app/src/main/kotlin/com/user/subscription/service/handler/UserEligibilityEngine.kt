@@ -1,7 +1,7 @@
 package com.user.subscription.service.handler
 
 import com.user.subscription.service.model.SubscriptionPlan
-import com.warnermedia.rulesengine.*
+import com.warnermedia.rulesengine.core.*
 
 
 object UserEligibilityEngine {
